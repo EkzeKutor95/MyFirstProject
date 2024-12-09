@@ -48,12 +48,26 @@ func showmenu() {
 			"Панкейки":          280,
 			"Круассан":          300,
 		},
+
+		"Скидки": {
+			"Пятница":     15,
+			"Суббота":     10,
+			"Всокресенье": 10,
+		},
 	}
+
+	queue := []string{"Кофе", "Фреш", "Чай", "Завтраки", "Десерты", "Скидки"}
+
 	fmt.Println("Меню кофейни GreenRoom")
-	for category, items := range menu {
+	for _, category := range queue {
 		fmt.Printf("\n%s: \n", category)
+		items := menu[category]
 		for item, price := range items {
-			fmt.Printf("  %s - %d\n", item, price)
+			if category == "Скидки" {
+				fmt.Printf(" %s - %d%%.\n", item, price)
+			} else {
+				fmt.Printf("  %s - %d руб.\n", item, price)
+			}
 		}
 	}
 }
